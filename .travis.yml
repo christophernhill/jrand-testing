@@ -1,1 +1,20 @@
+language: python
 
+services: 
+ - docker
+
+before_install:
+  docker pull mitgcm/mitgcm-openad-test:centos-test
+  git clone https://github.com/mitgcm/mitgcm
+  mv mitgcm MITgcm
+  docker run -i -t -v `pwd`:/MITgcm -d --name openad-testing --ulimit stack=-1:-1 --rm mitgcm/mitgcm-openad-test:centos-test /bin/bash
+
+jobs:
+  include:
+    # run the tests
+    - stage: code tests
+      env:
+      - MITGCM_EXP="global_ocean.90x40x15" MITGCM_PRECS="16 16 16" 
+        MITGCM_DECMD="docker exec -i openad-testing bash -lc"
+        MITGCM_TROPT="-oad -devel -of=../tools/build_options/linux_amd64_gfortran"
+      script: . tools/ci/runtr.sh
