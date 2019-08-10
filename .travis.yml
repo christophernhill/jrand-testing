@@ -4,10 +4,10 @@ services:
  - docker
 
 before_install:
-  docker pull mitgcm/mitgcm-openad-test:centos-test
-  git clone https://github.com/mitgcm/mitgcm
-  mv mitgcm MITgcm
-  docker run -i -t -v `pwd`:/MITgcm -d --name openad-testing --ulimit stack=-1:-1 --rm mitgcm/mitgcm-openad-test:centos-test /bin/bash
+  - docker pull mitgcm/mitgcm-openad-test:centos-test
+  - git clone https://github.com/mitgcm/mitgcm
+  - mv mitgcm MITgcm
+  - docker run -i -t -v `pwd`:/MITgcm -d --name openad-testing --ulimit stack=-1:-1 --rm mitgcm/mitgcm-openad-test:centos-test /bin/bash
 
 jobs:
   include:
