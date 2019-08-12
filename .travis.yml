@@ -18,5 +18,5 @@ jobs:
       - MITGCM_EXP="global_ocean.90x40x15" MITGCM_PRECS="16" 
         MITGCM_DECMD="docker exec -i openad-testing bash -lc"
         MITGCM_TROPT="-oad -devel -of=../tools/build_options/linux_amd64_gfortran"
-        MITGCM_INDIRPAT='/input_oad.*'
+        MITGCM_INPUT_DIR_PAT='/input_oad.*'
       script: . tools/ci/runtr.sh
