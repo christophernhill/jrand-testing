@@ -15,7 +15,7 @@ jobs:
     # run the tests
     - stage: code tests
       env:
-      - MITGCM_EXP="global_ocean.90x40x15" MITGCM_PRECS="16 16 16" 
+      - MITGCM_EXP="global_ocean.90x40x15" MITGCM_PRECS="16" 
         MITGCM_DECMD="docker exec -i openad-testing bash -lc"
         MITGCM_TROPT="-oad -devel -of=../tools/build_options/linux_amd64_gfortran"
         MITGCM_INDIRPAT='/input_oad.*'
